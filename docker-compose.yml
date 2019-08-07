@@ -1,0 +1,7 @@
+version: '3.4'
+services:
+    puppeteer:
+        image: morawskim/puppeteer-core
+        volumes:
+            - ./:/home/node/app
+
