@@ -1,6 +1,5 @@
 const puppeteer = require('puppeteer-core');
-
-class ScrapperError extends Error {}
+const ScrapperError = require('./scrapperError')
 
 async function scrapper() {
     const selector = 'html body div#free-learning-dropin div.product h2.product__title';
@@ -26,7 +25,7 @@ async function scrapper() {
         return {'title': bookTitle, 'imageUrl': bookImageUrl};
     } catch (e) {
         if (page) {
-            const img = await page.screenshot({fullPage: true});
+            const img = await page.screenshot({fullPage: true, type: 'png', encoding: "base64"});
             const error = new ScrapperError(e.message);
             error.screenshot = img;
             throw error;
