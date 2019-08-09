@@ -2,6 +2,7 @@ stages:
     - prepare
     - qa
     - docker
+    - deploy
 
 npm:
    stage: prepare
@@ -35,3 +36,34 @@ docker:develop:
       - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile.prod --destination $CI_REGISTRY_IMAGE:latest
   only:
     - develop
+
+deploy:production:
+  stage: deploy
+  image: edbizarro/gitlab-ci-pipeline-php:7.2
+  environment:
+    name: production
+#  only:
+#    - master
+  when: manual
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - echo $PROD_PATH
+    - echo "$PROD_CONFIG" > .env
+    - echo "DOCKER_CONFIG=$PROD_PATH" >> .env
+    - echo "PACKTPUB_ENV_FILE=$PROD_PATH/.env" >> .env
+    - DOCKER_AUTH=$(echo -n $CI_DEPLOY_USER:$CI_DEPLOY_PASSWORD | base64)
+    - ssh -p22 deployer@192.168.15.28 mkdir -p $PROD_PATH .config/systemd/user/
+    - scp -P22 -r .env deployer@192.168.15.28:${PROD_PATH}/
+    - scp -P22 -r deploy/packtpub.service deploy/packtpub.timer deployer@192.168.15.28:.config/systemd/user/
+    - |
+      ssh -p22 deployer@192.168.15.28 << EOF
+        set -e
+        echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$DOCKER_AUTH\"}}}" > $PROD_PATH/config.json
+        systemctl --user daemon-reload
+        systemctl --user enable --now packtpub.timer
+      EOF
