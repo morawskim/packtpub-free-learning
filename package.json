@@ -2,7 +2,8 @@
   "name": "packpub-free-learning",
   "version": "0.1.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "audit-ci": "audit-ci -m"
   },
   "author": "Marcin Morawski <marcin@morawksim.pl>",
   "license": "MIT",
@@ -18,5 +19,8 @@
   "description": "",
   "dependencies": {
     "axios": "^0.19.0"
+  },
+  "devDependencies": {
+    "audit-ci": "^2.3.0"
   }
 }

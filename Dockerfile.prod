@@ -1,0 +1,4 @@
+FROM morawskim/puppeteer-core
+
+COPY --chown=node:node ./ /home/node/app/
+WORKDIR /home/node/app/

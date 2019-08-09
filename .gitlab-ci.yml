@@ -1,0 +1,37 @@
+stages:
+    - prepare
+    - qa
+    - docker
+
+npm:
+   stage: prepare
+   image: node:10.16-slim
+   script:
+     - npm ci
+   artifacts:
+     paths:
+       - node_modules/
+     expire_in: 30 days
+     when: on_success
+
+npm-audit:
+  stage: qa
+  image: node:10.16-slim
+  script:
+    - npm run audit-ci
+  allow_failure: true
+  dependencies:
+    - npm
+
+docker:develop:
+  stage: docker
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  dependencies:
+    - npm
+  script:
+      - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+      - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile.prod --destination $CI_REGISTRY_IMAGE:latest
+  only:
+    - develop
