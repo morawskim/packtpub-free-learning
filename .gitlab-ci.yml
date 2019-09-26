@@ -24,6 +24,14 @@ npm-audit:
   dependencies:
     - npm
 
+test:
+  stage: qa
+  image: node:10.16-slim
+  script:
+    - npm test
+  dependencies:
+    - npm
+
 docker:develop:
   stage: docker
   image:
