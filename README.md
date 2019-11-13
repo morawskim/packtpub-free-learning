@@ -7,4 +7,6 @@ It sends the downloaded information to the chat system (rocketchat) via the `axi
 
 Copy `env.dist` to` .env`.
 Adjust the environment variable values.
+Run `make init`, on first run. If you don't do it the rocketchar container will not up: `packpubfreelearning_rocketchat_1   node main.js                     Exit 1 `
+This command initialize the replica set for mongo.
 Invoke the command `docker-compose run --rm puppeteer node /home/node/app/src/index.js`
