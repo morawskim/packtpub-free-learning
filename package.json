@@ -23,6 +23,8 @@
   },
   "devDependencies": {
     "audit-ci": "^2.4.2",
-    "jest": "^24.9.0"
+    "envfile": "^3.1.0",
+    "jest": "^24.9.0",
+    "rocketchat-api": "^1.0.4"
   }
 }

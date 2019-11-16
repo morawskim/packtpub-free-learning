@@ -5,8 +5,14 @@ It sends the downloaded information to the chat system (rocketchat) via the `axi
 
 ## Running
 
-Copy `env.dist` to` .env`.
-Adjust the environment variable values.
-Run `make init`, on first run. If you don't do it the rocketchar container will not up: `packpubfreelearning_rocketchat_1   node main.js                     Exit 1 `
-This command initialize the replica set for mongo.
-Invoke the command `docker-compose run --rm puppeteer node /home/node/app/src/index.js`
+Run `make init`, on first run.
+This command is shortcut for:
+* install required npm packages
+* provision rocketchat docker service (add incoming integration)
+* initialize the replica set for mongo
+
+If you don't do it the rocketchar container will not up: `packpubfreelearning_rocketchat_1   node main.js                     Exit 1 `
+Open webrowser and go to url `rocketchat.lvh.me` and finish configuration.
+
+Invoke the command `docker-compose exec puppeteer node /home/node/app/src/index.js`
+Or use shortcut `make puppeteer`
