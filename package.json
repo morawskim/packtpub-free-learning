@@ -5,7 +5,7 @@
     "test": "jest",
     "audit-ci": "audit-ci -m"
   },
-  "author": "Marcin Morawski <marcin@morawksim.pl>",
+  "author": "Marcin Morawski <marcin@morawskim.pl>",
   "license": "MIT",
   "main": "src/index.js",
   "repository": {
