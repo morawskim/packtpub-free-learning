@@ -1,5 +1,4 @@
-[![Codecov Coverage](https://img.shields.io/codecov/c/github/morawskim/packpub-free-learning
-/master.svg?style=flat-square)](https://codecov.io/gh/morawskim/packpub-free-learning/)
+[![codecov](https://codecov.io/gh/morawskim/packpub-free-learning/branch/master/graph/badge.svg)](https://codecov.io/gh/morawskim/packpub-free-learning)
 
 # About
 This app downloads the title and cover of packtpub's free book.
