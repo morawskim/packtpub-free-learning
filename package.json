@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "test": "jest",
+    "coverage": "jest --coverage",
     "audit-ci": "audit-ci -m"
   },
   "author": "Marcin Morawski <marcin@morawskim.pl>",

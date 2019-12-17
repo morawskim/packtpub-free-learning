@@ -39,7 +39,9 @@ test:
   stage: qa
   image: node:10.16-slim
   script:
-    - npm test
+    - npm install --only=prod codecov
+    - npm run coverage
+    - ./node_modules/.bin/codecov --token="${CODECOV_TOKEN}"
   dependencies:
     - npm
 
