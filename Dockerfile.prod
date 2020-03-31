@@ -1,5 +1,5 @@
 FROM morawskim/node10-google-chrome:78.0
 
-COPY --chown=node:node ./ /home/node/app/
-COPY --chown=node:node ./node_modules /home/node/app/node_modules
-WORKDIR /home/node/app/
+COPY --chown=chrome:chrome ./ /home/chrome/app/
+COPY --chown=chrome:chrome ./node_modules /home/chrome/app/node_modules
+WORKDIR /home/chrome/app/

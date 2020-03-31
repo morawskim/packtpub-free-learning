@@ -5,4 +5,4 @@ Description=Run packtpub
 Type=oneshot
 EnvironmentFile=-/home/deployer/packtpub-free-learning/.env
 ExecStartPre=/usr/bin/docker --config $DOCKER_CONFIG pull $DOCKER_IMAGE
-ExecStart=/usr/bin/docker run --rm --env-file $PACKTPUB_ENV_FILE $DOCKER_IMAGE node /home/node/app/src/index.js
+ExecStart=/usr/bin/docker run --rm --env-file $PACKTPUB_ENV_FILE $DOCKER_IMAGE node /home/chrome/app/src/index.js
