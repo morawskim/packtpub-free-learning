@@ -13,7 +13,7 @@ async function scrapper() {
             defaultViewport: {width: 1920, height: 1080}
         });
         page = await browser.newPage();
-        await page.goto('https://www.packtpub.com/free-learning');
+        await page.goto('https://www.packtpub.com/free-learning', {timeout: 45000});
         await page.waitFor((selector) => !!document.querySelector(selector), {timeout: 10000}, selector);
         const bookTitle = await page.evaluate( (selector) => {
             return document.querySelector(selector).innerHTML;
