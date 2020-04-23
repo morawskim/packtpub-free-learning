@@ -43,3 +43,5 @@ services:
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
           - /dev/null:/etc/traefik/traefik.toml
+    wait:
+        image: dokku/wait
