@@ -54,37 +54,27 @@ docker:develop:
     - npm-production
   script:
       - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-      - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:latest
+      - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/deploy/Dockerfile --destination $CI_REGISTRY_IMAGE:latest
   only:
     - develop
 
 deploy:production:
   stage: deploy
-  image: edbizarro/gitlab-ci-pipeline-php:7.2
+  image: docker:19.03-dind
   environment:
     name: production
 #  only:
 #    - master
   when: manual
   before_script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - 'which ssh-agent || ( apk update && apk add openssh-client )'
     - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - echo $PROD_PATH
-    - echo "$PROD_CONFIG" > .env
-    - echo "DOCKER_CONFIG=$PROD_PATH" >> .env
-    - echo "PACKTPUB_ENV_FILE=$PROD_PATH/.env" >> .env
+    - TMP_PATH=$(mktemp -d)
+    - echo "$PROD_CONFIG" > deploy/.env-sensi
     - DOCKER_AUTH=$(echo -n $CI_DEPLOY_USER:$CI_DEPLOY_PASSWORD | base64)
-    - ssh -p22 deployer@192.168.15.28 mkdir -p $PROD_PATH .config/systemd/user/
-    - scp -P22 -r .env deployer@192.168.15.28:${PROD_PATH}/
-    - scp -P22 -r deploy/packtpub.service deploy/packtpub.timer deployer@192.168.15.28:.config/systemd/user/
-    - |
-      ssh -p22 deployer@192.168.15.28 << EOF
-        set -e
-        echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$DOCKER_AUTH\"}}}" > $PROD_PATH/config.json
-        systemctl --user daemon-reload
-        systemctl --user enable --now packtpub.timer
-      EOF
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$DOCKER_AUTH\"}}}" > $TMP_PATH/config.json
+    - DOCKER_HOST=ssh://deployer@192.168.15.28 docker --config $TMP_PATH stack deploy --compose-file deploy/docker-compose.sensi.yml --with-registry-auth packtpub-free-learning

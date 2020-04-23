@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+  puppeteer:
+    image: registry.sensilabs.pl/marcin.morawski/packpub-free-learning
+    restart: on-failure
+    environment:
+      TZ: Europe/Warsaw
+    env_file:
+      - .env-sensi
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 5s
+# vim: ft=docker-compose.yaml:
