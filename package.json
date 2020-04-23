@@ -20,7 +20,9 @@
   "description": "",
   "dependencies": {
     "axios": "^0.19.2",
-    "puppeteer-core": "^2.1.1"
+    "node-cron": "^2.0.3",
+    "puppeteer-core": "^2.1.1",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "audit-ci": "^2.5.1",

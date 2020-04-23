@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer-core');
-const ScrapperError = require('./scrapperError')
+const ScrapperError = require('./scrapperError');
 
 async function scrapper() {
     const selector = '#free-learning-dropin div.product > div.product__info h1';
@@ -21,7 +21,7 @@ async function scrapper() {
         const bookImageUrl = await page.evaluate( (selector) => {
             return document.querySelector(selector).src;
         }, imgSelector);
-        
+
         return {'title': bookTitle, 'imageUrl': bookImageUrl};
     } catch (e) {
         if (page) {
@@ -34,7 +34,7 @@ async function scrapper() {
     } finally {
         browser && browser.close();
     }
-};
+}
 
 module.exports = scrapper;
 
