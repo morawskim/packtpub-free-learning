@@ -6,7 +6,7 @@ services:
         env_file:
             - .env
         volumes:
-            - ./:/home/node/app
+            - ./:/home/chrome/app
     rocketchat:
         image: rocketchat/rocket.chat:0.70.2
         volumes:

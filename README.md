@@ -18,5 +18,5 @@ This command is shortcut for:
 If you don't do it the rocketchar container will not up: `packpubfreelearning_rocketchat_1   node main.js                     Exit 1 `
 Open webrowser and go to url `rocketchat.lvh.me` and finish configuration.
 
-Invoke the command `docker-compose exec puppeteer node /home/node/app/src/index.js`
+Invoke the command `docker-compose exec puppeteer node /home/chrome/app/src/index.js`
 Or use shortcut `make puppeteer`
