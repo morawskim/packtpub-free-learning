@@ -26,6 +26,6 @@
   },
   "devDependencies": {
     "audit-ci": "^2.5.1",
-    "jest": "^24.9.0"
+    "jest": "^25.4.0"
   }
 }
