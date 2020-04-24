@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   puppeteer:
-    image: registry.sensilabs.pl/marcin.morawski/packpub-free-learning
+    image: morawskim/packtpub-free-learning:0.1.0
     restart: on-failure
     environment:
       TZ: Europe/Warsaw
