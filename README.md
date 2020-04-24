@@ -20,3 +20,15 @@ Open webrowser and go to url `rocketchat.lvh.me` and finish configuration.
 
 Invoke the command `docker-compose exec puppeteer node /home/chrome/app/src/index.js`
 Or use shortcut `make puppeteer`
+
+## Gitlab CI/CD variables
+
+`SSH_PRIVATE_KEY` - private ssh key to deploy
+
+`PROD_CONFIG` - `.env` file contents
+
+`CODECOV_TOKEN` - token for [codecov](https://codecov.io/)
+
+`DOCKER_USERNAME` - docker hub username (default value `morawskim`)
+
+`DOCKER_PASSWORD` - docker hub password or access token
