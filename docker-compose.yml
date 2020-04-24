@@ -10,7 +10,7 @@ services:
     rocketchat:
         image: rocketchat/rocket.chat:0.70.2
         volumes:
-            - ./.data/uploads:/app/uploads
+            - uploads:/app/uploads
         environment:
             - PORT=3000
             - ROOT_URL=${ROCKETCHAT_URL:-http://localhost:3000}
@@ -29,7 +29,7 @@ services:
     mongo:
         image: mongo:3.2
         volumes:
-            - ./.data/db:/data/db
+            - db:/data/db
         command: mongod --smallfiles --oplogSize 128 --replSet rs0 --storageEngine=mmapv1
         labels:
             traefik.enable: "false"
@@ -45,3 +45,7 @@ services:
           - /dev/null:/etc/traefik/traefik.toml
     wait:
         image: dokku/wait
+
+volumes:
+  uploads:
+  db:
