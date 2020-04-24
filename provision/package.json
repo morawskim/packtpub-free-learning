@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "devDependencies": {
+    "envfile": "^3.1.0",
+    "rocketchat-api": "^1.0.4"
+  }
+}
