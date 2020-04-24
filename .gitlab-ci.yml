@@ -15,17 +15,6 @@ npm:
      expire_in: 30 days
      when: on_success
 
-npm-production:
-   stage: prepare
-   image: node:10.16-slim
-   script:
-     - npm ci --production
-   artifacts:
-     paths:
-       - node_modules/
-     expire_in: 30 days
-     when: on_success
-
 npm-audit:
   stage: qa
   image: node:10.16-slim
@@ -50,11 +39,9 @@ docker:develop:
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
-  dependencies:
-    - npm-production
   script:
       - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-      - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/deploy/Dockerfile --destination $CI_REGISTRY_IMAGE:latest
+      - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:latest
   only:
     - develop
 
