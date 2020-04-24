@@ -1,5 +1,6 @@
 {
-  "name": "packpub-free-learning",
+  "name": "packtpub-free-learning",
+  "private": true,
   "version": "0.1.0",
   "scripts": {
     "test": "jest",
@@ -11,12 +12,12 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/morawskim/packpub-free-learning.git"
+    "url": "git+https://github.com/morawskim/packtpub-free-learning.git"
   },
   "bugs": {
-    "url": "https://github.com/morawskim/packpub-free-learning/issues"
+    "url": "https://github.com/morawskim/packtpub-free-learning/issues"
   },
-  "homepage": "https://github.com/morawskim/packpub-free-learning#readme",
+  "homepage": "https://github.com/morawskim/packtpub-free-learning#readme",
   "description": "",
   "dependencies": {
     "axios": "^0.19.2",

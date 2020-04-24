@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/morawskim/packpub-free-learning/branch/master/graph/badge.svg)](https://codecov.io/gh/morawskim/packpub-free-learning)
+[![codecov](https://codecov.io/gh/morawskim/packtpub-free-learning/branch/master/graph/badge.svg)](https://codecov.io/gh/morawskim/packpub-free-learning)
 
 # About
 This app downloads the title and cover of packtpub's free book.
@@ -15,7 +15,7 @@ This command is shortcut for:
 * provision rocketchat docker service (add incoming integration)
 * initialize the replica set for mongo
 
-If you don't do it the rocketchar container will not up: `packpubfreelearning_rocketchat_1   node main.js                     Exit 1 `
+If you don't do it the rocketchar container will not up: `packtpubfreelearning_rocketchat_1   node main.js                     Exit 1 `
 Open webrowser and go to url `rocketchat.lvh.me` and finish configuration.
 
 Invoke the command `docker-compose exec puppeteer node /home/chrome/app/src/index.js`
