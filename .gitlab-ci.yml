@@ -24,15 +24,31 @@ npm-audit:
   dependencies:
     - npm
 
-test:
+.test:
   stage: qa
   image: node:10.16-slim
   script:
-    - npm install --only=prod codecov
     - npm run coverage
-    - ./node_modules/.bin/codecov --token="${CODECOV_TOKEN}"
   dependencies:
     - npm
+  artifacts:
+    paths:
+      - coverage/
+    expire_in: 30 days
+    when: on_success
+
+jest:
+  extends: .test
+  except:
+    - master
+
+jest-master:
+  extends: .test
+  after_script:
+    - npm install --only=prod codecov
+    - ./node_modules/.bin/codecov --token="${CODECOV_TOKEN}"
+  only:
+    - master
 
 docker:develop:
   stage: docker
