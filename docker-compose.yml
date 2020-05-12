@@ -1,12 +1,12 @@
 version: '3.4'
 services:
     puppeteer:
-        image: morawskim/node10-google-chrome:78.0
+        image: morawskim/node12-google-chrome:81.0
         tty: true
         env_file:
             - .env
         volumes:
-            - ./:/home/chrome/app
+            - ./:/home/node/app
     rocketchat:
         image: rocketchat/rocket.chat:0.70.2
         volumes:

@@ -1,8 +1,8 @@
-FROM morawskim/node10-google-chrome:78.0
+FROM morawskim/node12-google-chrome:81.0
 
-RUN mkdir -p /home/chrome/app/
-WORKDIR /home/chrome/app/
-COPY --chown=chrome:chrome package*.json ./
+RUN mkdir -p /home/node/app/
+WORKDIR /home/node/app/
+COPY --chown=node:node package*.json ./
 RUN npm ci --production
-COPY --chown=chrome:chrome src src
+COPY --chown=node:node src src
 CMD ["node", "src/cron.js"]
