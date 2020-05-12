@@ -1,5 +1,5 @@
 const scrapper = require('./scrapper');
-const ScrapperError = require('./scrapperError')
+const ScrapperError = require('./scrapperError');
 const webhooks = require('./webhooks');
 
 const run = () => {
