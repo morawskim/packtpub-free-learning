@@ -32,3 +32,14 @@ Or use shortcut `make puppeteer`
 `DOCKER_USERNAME` - docker hub username (default value `morawskim`)
 
 `DOCKER_PASSWORD` - docker hub password or access token
+
+## Deploying
+To deploy this script use docker.
+You can use `docker-compose` or `docker swarm`.
+In `deploy/docker-compose.sensi.yml` you can found example configuration.
+
+If you don't change timezone then default value UTC will be used.
+You can also set env `CRON_EXPRESSION` if you want to change the default time to fetch the information about the free book.
+The default value is 7:50 AM.
+
+In `.env` file you must have `ROCKETCHAT_WEBHOOK_URL` set to your incoming webhook URL.
