@@ -1,10 +1,11 @@
 version: '3.4'
 services:
   puppeteer:
-    image: morawskim/packtpub-free-learning:0.1.0
+    image: morawskim/packtpub-free-learning:0.2.0
     restart: on-failure
     environment:
       TZ: Europe/Warsaw
+      CRON_EXPRESSION: 40 7 * * *
     env_file:
       - .env-sensi
     deploy:
