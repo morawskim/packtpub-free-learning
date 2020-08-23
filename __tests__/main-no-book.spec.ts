@@ -1,5 +1,4 @@
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'ScrapperEr... Remove this comment to see the full error message
-const ScrapperError = require('../src/scrapperError');
+import ScrapperError from "../src/scrapperError";
 
 describe('Extract info about free book', () => {
 //      beforeEach(() => jest.resetModules());
@@ -18,8 +17,7 @@ describe('Extract info about free book', () => {
                 errorNotify: mockErrorNotify,
             };
         });
-
-        const main = require('../src/main');
+        const main = require("../src/main").default;
 
         await main();
         expect(mockScrapper).toHaveBeenCalled();
