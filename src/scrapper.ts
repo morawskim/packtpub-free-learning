@@ -1,8 +1,6 @@
-const puppeteer = require('puppeteer-core');
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'ScrapperEr... Remove this comment to see the full error message
-const ScrapperError = require('./scrapperError');
+import puppeteer from 'puppeteer-core';
+import ScrapperError from './scrapperError';
 
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'scrapper'.
 async function scrapper() {
     const selector = '#free-learning-dropin div.product > div.product__info h1';
     const imgSelector = '#free-learning-dropin div.product div.product__cover img';
@@ -38,6 +36,6 @@ async function scrapper() {
     }
 }
 
-module.exports = scrapper;
+export default scrapper;
 
 // vim:set ft=puppeteer.javascript:

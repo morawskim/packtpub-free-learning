@@ -10,4 +10,4 @@ init:
 	docker-compose up -d
 
 puppeteer:
-	docker-compose exec puppeteer node /home/node/app/src/index.js
+	docker-compose exec puppeteer bash -c 'cd /home/node/app && npx tsc && node /home/node/app/build/src/index.js'

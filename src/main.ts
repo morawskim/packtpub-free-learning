@@ -1,8 +1,6 @@
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'scrapper'.
-const scrapper = require('./scrapper');
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'ScrapperEr... Remove this comment to see the full error message
-const ScrapperError = require('./scrapperError');
-const webhooks = require('./webhooks');
+import scrapper from './scrapper';
+import ScrapperError from './scrapperError';
+import webhooks from './webhooks';
 
 const run = () => {
     return scrapper()
@@ -16,4 +14,4 @@ const run = () => {
     });
 };
 
-module.exports = run;
+export default run;

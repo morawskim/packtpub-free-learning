@@ -1,4 +1,5 @@
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'scrapper'.
-const scrapper = require('./main');
+import scrapper from "./main";
 
-scrapper().then((response: any) => process.exit(), (e: any) => process.exit(1));
+(function() {
+    scrapper().then((response: any) => process.exit(), (e: any) => process.exit(1));
+})()

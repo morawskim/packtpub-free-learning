@@ -8,7 +8,6 @@ const myFormat = winston.format.printf(({
     return `${timestamp} ${level}: ${message}`;
 });
 
-// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'logger'.
 const logger = winston.createLogger({
     level: 'info',
     format: winston.format.combine(
@@ -21,4 +20,4 @@ const logger = winston.createLogger({
     ]
 });
 
-module.exports = logger;
+export default logger;
