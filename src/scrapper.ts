@@ -1,6 +1,8 @@
 const puppeteer = require('puppeteer-core');
+// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'ScrapperEr... Remove this comment to see the full error message
 const ScrapperError = require('./scrapperError');
 
+// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'scrapper'.
 async function scrapper() {
     const selector = '#free-learning-dropin div.product > div.product__info h1';
     const imgSelector = '#free-learning-dropin div.product div.product__cover img';
@@ -14,11 +16,11 @@ async function scrapper() {
         });
         page = await browser.newPage();
         await page.goto('https://www.packtpub.com/free-learning', {timeout: 45000});
-        await page.waitFor((selector) => !!document.querySelector(selector), {timeout: 10000}, selector);
-        const bookTitle = await page.evaluate( (selector) => {
+        await page.waitFor((selector: any) => !!document.querySelector(selector), {timeout: 10000}, selector);
+        const bookTitle = await page.evaluate( (selector: any) => {
             return document.querySelector(selector).innerHTML;
         }, selector);
-        const bookImageUrl = await page.evaluate( (selector) => {
+        const bookImageUrl = await page.evaluate( (selector: any) => {
             return document.querySelector(selector).src;
         }, imgSelector);
 

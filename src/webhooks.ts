@@ -1,7 +1,7 @@
 const axios = require('axios');
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-const newBookNotify = (book) => {
+const newBookNotify = (book: any) => {
     return axios.post(process.env.ROCKETCHAT_WEBHOOK_URL, {
         text:`Dziś za darmo książka: ${book.title}. Do dodania do konta na https://www.packtpub.com/free-learning`,
         attachments: [
@@ -10,7 +10,7 @@ const newBookNotify = (book) => {
     });
 };
 
-const noFreeBookNotify = (e) => {
+const noFreeBookNotify = (e: any) => {
     return axios.post(process.env.ROCKETCHAT_WEBHOOK_URL, {
         text:`Nie mogę pobrać informacji o dzisiejszej darmowej książce.`,
         attachments: [
@@ -19,7 +19,7 @@ const noFreeBookNotify = (e) => {
     });
 };
 
-const errorNotify = (e) => {
+const errorNotify = (e: any) => {
     return axios.post(process.env.ROCKETCHAT_WEBHOOK_URL, {
         text:`Błąd ${e.message}`,
         attachments: [
