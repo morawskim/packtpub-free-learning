@@ -2,8 +2,8 @@ import puppeteer from 'puppeteer-core';
 import ScrapperError from './scrapperError';
 
 async function scrapper() {
-    const selector = '#free-learning-dropin div.product > div.product__info h1';
-    const imgSelector = '#free-learning-dropin div.product div.product__cover img';
+    const selector = '#app div.product__info div.grid.product-info.main-product h3';
+    const imgSelector = '#app div.product__info div.product-info__image img';
     let browser, page;
     try {
         browser = await puppeteer.launch({
