@@ -22,7 +22,7 @@ function getConfiguration() {
 
 async function createIntegration(rocketChatUrl) {
     const rocketChatApi = new RocketChatApi(rocketChatUrl.protocol, rocketChatUrl.hostname, rocketChatUrl.port);
-    await rocketChatApi.authentication.login('admin', 'admin', async () => {
+    await rocketChatApi.authentication.login('root', 'root', async () => {
         const response = await rocketChatApi.integration.create({
             "type": "webhook-incoming",
             "name": "packtpub free book",

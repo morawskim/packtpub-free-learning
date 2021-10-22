@@ -8,7 +8,7 @@ services:
         volumes:
             - ./:/home/node/app
     rocketchat:
-        image: rocketchat/rocket.chat:0.70.2
+        image: rocketchat/rocket.chat:3.18.2
         volumes:
             - uploads:/app/uploads
         environment:
@@ -17,8 +17,8 @@ services:
             - MONGO_URL=mongodb://mongo:27017/rocketchat
             - MONGO_OPLOG_URL=mongodb://mongo:27017/local
             - MAIL_URL=smtp://smtp.email
-            - ADMIN_USERNAME=admin
-            - ADMIN_PASS=admin
+            - ADMIN_USERNAME=root
+            - ADMIN_PASS=root
             - ADMIN_EMAIL=admin@example.com
         depends_on:
             - mongo
@@ -27,7 +27,7 @@ services:
             traefik.frontend.rule: "Host:rocketchat.lvh.me"
             traefik.port: "3000"
     mongo:
-        image: mongo:3.2
+        image: mongo:4.0
         volumes:
             - db:/data/db
         command: mongod --smallfiles --oplogSize 128 --replSet rs0 --storageEngine=mmapv1
