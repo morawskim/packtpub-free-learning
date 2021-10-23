@@ -14,7 +14,7 @@ async function scrapper() {
         });
         page = await browser.newPage();
         await page.goto('https://www.packtpub.com/free-learning', {timeout: 45000});
-        await page.waitFor((selector: any) => !!document.querySelector(selector), {timeout: 10000}, selector);
+        await page.waitForSelector(selector, {timeout: 10000});
         const bookTitle = await page.evaluate( (selector: any) => {
             return document.querySelector(selector).innerHTML;
         }, selector);
@@ -23,12 +23,18 @@ async function scrapper() {
         }, imgSelector);
 
         return {'title': bookTitle, 'imageUrl': bookImageUrl};
-    } catch (e) {
+    } catch (e: any) {
         if (page) {
-            const img = await page.screenshot({fullPage: true, type: 'png', encoding: "base64"});
-            const error = new ScrapperError(e.message);
-            error.screenshot = img;
-            throw error;
+            let img: string;
+            const screenshot = await page.screenshot({fullPage: true, type: 'png', encoding: "base64"});
+
+            if (screenshot) {
+                img = screenshot.toString();
+                const error = new ScrapperError(e.message);
+                error.screenshot = img;
+
+                throw error;
+            }
         }
         throw e;
     } finally {
