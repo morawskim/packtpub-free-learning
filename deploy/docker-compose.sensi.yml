@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   puppeteer:
-    image: morawskim/packtpub-free-learning:0.4.0
+    image: morawskim/packtpub-free-learning:0.4.1
     restart: on-failure
     environment:
       TZ: Europe/Warsaw
