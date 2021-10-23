@@ -8,7 +8,7 @@ services:
         volumes:
             - ./:/home/node/app
     rocketchat:
-        image: rocketchat/rocket.chat:3.18.2
+        image: rocketchat/rocket.chat:4.0.0
         volumes:
             - uploads:/app/uploads
         environment:
