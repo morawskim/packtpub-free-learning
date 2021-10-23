@@ -20,7 +20,7 @@
   "homepage": "https://github.com/morawskim/packtpub-free-learning#readme",
   "description": "",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "node-cron": "^2.0.3",
     "puppeteer-core": "^2.1.1",
     "winston": "^3.2.1"
