@@ -135,4 +135,4 @@ deploy:production:
     - echo "$PROD_CONFIG" > deploy/.env-sensi
     - DOCKER_AUTH=$(echo -n $CI_DEPLOY_USER:$CI_DEPLOY_PASSWORD | base64)
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$DOCKER_AUTH\"}}}" > $TMP_PATH/config.json
-    - DOCKER_HOST=ssh://deployer@192.168.15.28 docker --config $TMP_PATH stack deploy --compose-file deploy/docker-compose.sensi.yml --with-registry-auth packtpub-free-learning
+    - DOCKER_HOST=ssh://deployer@35.210.15.98 docker --config $TMP_PATH stack deploy --compose-file deploy/docker-compose.sensi.yml --with-registry-auth packtpub-free-learning
