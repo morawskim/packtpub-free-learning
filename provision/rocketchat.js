@@ -1,5 +1,5 @@
 const RocketChatApi = require('rocketchat-api');
-const envfile = require('envfile');
+const { parse, stringify } = require('envfile');
 const path = require('path');
 const fs = require('fs');
 const url = require('url');
@@ -10,9 +10,9 @@ function getConfiguration() {
 
     let configuration = {};
     if (fs.existsSync(envFile)) {
-        configuration = envfile.parseFileSync(envFile);
+        configuration = parse(fs.readFileSync(envFile).toString());
     } else if (fs.existsSync(envDistFile)) {
-        configuration = envfile.parseFileSync(envDistFile);
+        configuration = parse(fs.readFileSync(envDistFile).toString());
     } else {
         throw new Error(`At "${configDir}" not exist neither .env or env.dist file`);
     }
@@ -36,7 +36,7 @@ async function createIntegration(rocketChatUrl) {
             console.error("Error during add rocket chat integration");
         }
         configuration.ROCKETCHAT_WEBHOOK_URL = `${rocketChatUrl.protocol}//${rocketChatUrl.hostname}:${rocketChatUrl.port}/hooks/${response.integration._id}/${response.integration.token}`;
-        fs.writeFileSync(configDir + "/.env", envfile.stringifySync(configuration));
+        fs.writeFileSync(configDir + "/.env", stringify(configuration));
         process.exit(0);
     });
 }
