@@ -7,6 +7,8 @@ It sends the downloaded information to the chat system (rocketchat) via the `axi
 Development environment created via docker-compose.
 Pipeline for build, test, audit dependiences and deploy via Gitlab-CI.
 
+![screenshot](./docs/screenshot.png)
+
 ## Running
 
 Run `make init`, on first run.

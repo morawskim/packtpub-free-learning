@@ -6,6 +6,7 @@ init:
 	docker-compose up -d
 	docker-compose exec puppeteer bash -c 'cd /home/node/app && npm ci'
 	docker-compose run --rm wait -c rocketchat:3000 -t 45
+	docker-compose exec puppeteer bash -c 'cd /home/node/app/provision/ && npm ci'
 	docker-compose exec puppeteer node /home/node/app/provision/rocketchat.js
 	docker-compose up -d
 
